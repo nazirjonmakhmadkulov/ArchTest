@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.7">
+      <module name="ArchTest.app" target="11" />
+      <module name="ArchTest.core.common" target="11" />
+      <module name="ArchTest.core.data" target="11" />
+      <module name="ArchTest.core.database" target="11" />
+      <module name="ArchTest.core.network" target="11" />
+      <module name="ArchTest.fature.profile" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
