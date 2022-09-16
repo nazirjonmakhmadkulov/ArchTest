@@ -6,9 +6,7 @@ import com.example.database.owner.dao.OwnerDao
 import com.example.database.owner.entities.OwnerEntity
 
 @Database(
-    entities = [
-        OwnerEntity::class,
-    ],
+    entities = [OwnerEntity::class],
     version = 1,
     exportSchema = false
 )
