@@ -1,19 +1,20 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
+        applicationId "com.example.archtestdagger"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,31 +30,41 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    kapt {
+        generateStubs = true
+    }
 }
 
 dependencies {
     implementation(project(":core:common"))
-    implementation(project(":core:data"))
-    implementation(project(":core:model"))
+    implementation(project(":core_dagger:network_dagger"))
+    implementation(project(":core_dagger:data_dagger"))
+    implementation(project(":feature_dagger:profile_dagger"))
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation "androidx.fragment:fragment-ktx:1.5.3"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    implementation 'com.google.dagger:dagger:2.43.2'
+    kapt 'com.google.dagger:dagger-compiler:2.43.2'
     implementation 'com.google.dagger:dagger-android:2.43.2'
+    implementation 'com.google.dagger:dagger-android-support:2.43.2' // if you use the support libraries
     kapt 'com.google.dagger:dagger-android-processor:2.43.2'
 
-    // Dagger - Hilt
-    implementation 'com.google.dagger:hilt-android:2.43.2'
-    kapt 'com.google.dagger:hilt-android-compiler:2.43.2'
-
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7")
+
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

@@ -3,11 +3,17 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="ArchTest.app" target="11" />
+      <module name="ArchTest.archtestdagger" target="11" />
       <module name="ArchTest.core.common" target="11" />
       <module name="ArchTest.core.data" target="11" />
       <module name="ArchTest.core.database" target="11" />
       <module name="ArchTest.core.network" target="11" />
+      <module name="ArchTest.core_dagger.data_dagger" target="11" />
+      <module name="ArchTest.core_dagger.network_dagger" target="11" />
       <module name="ArchTest.fature.profile" target="11" />
+      <module name="ArchTest.feature.profile" target="11" />
+      <module name="ArchTest.feature_dagger.profile_dagger" target="11" />
+      <module name="ArchTest.profile_dagger" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -20,3 +20,8 @@ include ':core:data'
 include ':core:common'
 include ':core:model'
 include ':feature:profile'
+
+include ':archtestdagger'
+include 'core_dagger:data_dagger'
+include 'feature_dagger:profile_dagger'
+include ':core_dagger:network_dagger'
