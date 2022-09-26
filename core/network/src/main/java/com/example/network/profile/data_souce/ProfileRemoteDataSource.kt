@@ -4,12 +4,11 @@ import com.example.common.network.RemoteDataSource
 import com.example.network.profile.model.RemoteProfile
 import com.example.network.profile.remote.ProfileService
 import kotlinx.coroutines.CoroutineDispatcher
-import java.security.acl.Owner
 import javax.inject.Inject
 
 class ProfileRemoteDataSource @Inject constructor(private val profileService: ProfileService) :
     RemoteDataSource() {
-    suspend fun getOwner(dispatcher: CoroutineDispatcher): com.example.common.network.Result<Owner> {
+    suspend fun getOwner(dispatcher: CoroutineDispatcher): com.example.common.network.Result<RemoteProfile.Data> {
         return safeApiCall(dispatcher) { profileService.getOwner() }
     }
 
@@ -18,8 +17,7 @@ class ProfileRemoteDataSource @Inject constructor(private val profileService: Pr
     }
 
     suspend fun getUser(
-        dispatcher: CoroutineDispatcher,
-        userId: String
+        dispatcher: CoroutineDispatcher, userId: String
     ): com.example.common.network.Result<RemoteProfile.Data> {
         return safeApiCall(dispatcher) { profileService.getUser(userId) }
     }

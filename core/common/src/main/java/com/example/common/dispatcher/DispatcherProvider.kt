@@ -1,4 +1,4 @@
-package com.nazaret.core.dispatcher
+package com.example.common.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 

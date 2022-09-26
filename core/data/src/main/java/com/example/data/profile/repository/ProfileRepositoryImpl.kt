@@ -8,13 +8,14 @@ import com.example.database.owner.entities.OwnerEntity
 import com.example.model.Profile
 import com.example.network.profile.data_souce.ProfileRemoteDataSource
 import com.example.network.profile.remote.ProfileService
-import com.nazaret.core.dispatcher.DispatcherProvider
+import com.example.common.dispatcher.DispatcherProvider
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
     private val dispatcher: DispatcherProvider,
-    private val profileService: ProfileService,
     private val profileRemoteDataSource: ProfileRemoteDataSource,
     private val userDao: OwnerDao,
 ) : ProfileRepository {
@@ -33,12 +34,15 @@ class ProfileRepositoryImpl @Inject constructor(
     override suspend fun getUser(userId: String): Result<Profile.Data> {
         return when (val apiResult = profileRemoteDataSource.getUser(dispatcher.io, userId)) {
             is Result.Loading -> Result.Loading
-            is Result.Success -> Result.Success(apiResult.data.asExternalModel())
+            is Result.Success -> {
+                userDao.insertUser(apiResult.data.asEntity())
+                Result.Success(apiResult.data.asExternalModel())
+            }
             is Result.Error -> Result.Error(apiResult.cause, apiResult.code, apiResult.errorMessage)
         }
     }
 
-    override fun getLocalOwner(id: String): Flow<OwnerEntity?> {
-        return userDao.getUserById(id)
+    override fun getLocalOwner(id: String): Flow<Profile.Data?> {
+        return userDao.getUserById(id).map { it?.asExternalModel() }
     }
 }
