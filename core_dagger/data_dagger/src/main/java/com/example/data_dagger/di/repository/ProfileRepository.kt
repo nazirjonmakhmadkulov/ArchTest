@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface ProfileRepository {
     suspend fun getMe(): Result<Profile.Data>
     suspend fun getUser(userId: String): Result<Profile.Data>
-    fun getLocalOwner(id: String): Flow<Profile.Data?>
+    //fun getLocalOwner(id: String): Flow<Profile.Data?>
 }

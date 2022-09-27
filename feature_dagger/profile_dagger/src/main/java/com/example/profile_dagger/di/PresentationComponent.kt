@@ -8,7 +8,6 @@ import dagger.Component
 )
 @PresentationScope
 interface PresentationComponent {
-
     @Component.Builder
     interface Builder {
         fun domainComponent(domainComponent: ProfileDomainComponent): Builder

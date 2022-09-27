@@ -2,6 +2,7 @@ package com.example.profile_dagger
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -11,7 +12,7 @@ import com.example.model.Profile
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class ProfileDaggerFragment :Fragment(R.layout.fragment_profile_dagger) {
+class ProfileDaggerFragment : Fragment(R.layout.fragment_profile_dagger) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -20,12 +21,6 @@ class ProfileDaggerFragment :Fragment(R.layout.fragment_profile_dagger) {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
-
-        requireArguments()
-            .get("CountryKey")
-            ?.let {
-                Log.e("TAG", "Country $it")
-            }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,8 +35,13 @@ class ProfileDaggerFragment :Fragment(R.layout.fragment_profile_dagger) {
     private fun subscribeGetUserState(result: Result<Profile.Data>) {
         when (result) {
             is Result.Loading -> Result.Loading
-            is Result.Success -> Log.d(" User Remote", result.data.toString())
-            is Result.Error -> Log.d(Constant.ERROR, "${result.code.toString()}=${result.errorMessage}")
+            is Result.Success -> {
+                view?.findViewById<TextView>(R.id.text)?.text = result.toString()
+                Log.d(" User Remote", result.data.toString())
+            }
+            is Result.Error -> Log.d(
+                Constant.ERROR, "${result.code.toString()}=${result.errorMessage}"
+            )
         }
     }
 }

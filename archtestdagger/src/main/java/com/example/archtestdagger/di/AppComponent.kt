@@ -3,14 +3,24 @@ package com.example.archtestdagger.di
 import android.app.Application
 import com.example.archtestdagger.ArchTestDaggerApp
 import com.example.archtestdagger.di.modules.ActivityBindingModule
+import com.example.common.dispatcher.DispatcherProvider
+import com.example.common.scope.SocialUrl
 import com.example.profile_dagger.di.PresentationComponent
+import com.example.profile_dagger.di.ProfileDaggerViewModelModule
+import com.example.profile_dagger.di.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
+import retrofit2.Retrofit
 
 @Component(
     modules = [
+        ContextModule::class,
+        NetworkModule::class,
+        CoroutineDispatcherModule::class,
+        ViewModelModule::class,
+        ProfileDaggerViewModelModule::class,
         AndroidInjectionModule::class,
         ActivityBindingModule::class,
     ],
@@ -18,6 +28,10 @@ import dagger.android.AndroidInjector
 )
 @AppScope
 interface AppComponent : AndroidInjector<ArchTestDaggerApp> {
+    @SocialUrl
+    fun retrofitSocial(): Retrofit
+    fun dispatcher(): DispatcherProvider
+
     @Component.Builder
     interface Builder {
         @BindsInstance

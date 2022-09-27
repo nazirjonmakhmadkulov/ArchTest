@@ -20,10 +20,8 @@ class ArchTestDaggerApp : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-
         val appComponent = DaggerAppComponent.builder().application(this)
             .presentationComponent(providePresentationComponent()).build()
-
         appComponent.inject(this)
     }
 
