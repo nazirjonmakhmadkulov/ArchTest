@@ -1,0 +1,21 @@
+package com.example.network_dagger.remote
+
+import com.example.network_dagger.model.RemoteProfile
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+interface ProfileService {
+    @GET("api/v1/user_profile/me")
+    suspend fun getOwner(): RemoteProfile.Data
+
+    @GET("api/v1/user_profile/")
+    suspend fun getUsers(@Query("offset") page: Int, @Query("limit") limit: Int): Response<RemoteProfile>
+
+    @GET("api/v1/user_profile/me")
+    suspend fun getMe(): RemoteProfile.Data
+
+    @GET("api/v1/user_profile/{userId}")
+    suspend fun getUser(@Path("userId") userId: String): RemoteProfile.Data
+}

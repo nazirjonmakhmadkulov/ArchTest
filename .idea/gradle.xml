@@ -11,14 +11,20 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/archtestdagger" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/common" />
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/core_dagger" />
+            <option value="$PROJECT_DIR$/core_dagger/data_dagger" />
+            <option value="$PROJECT_DIR$/core_dagger/network_dagger" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature_dagger" />
+            <option value="$PROJECT_DIR$/feature_dagger/profile_dagger" />
           </set>
         </option>
       </GradleProjectSettings>

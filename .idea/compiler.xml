@@ -8,7 +8,6 @@
       <module name="ArchTest.core.database" target="11" />
       <module name="ArchTest.core.network" target="11" />
       <module name="ArchTest.fature.profile" target="11" />
-      <module name="ArchTest.feature.profile" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
