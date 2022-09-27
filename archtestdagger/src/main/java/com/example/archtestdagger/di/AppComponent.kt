@@ -7,6 +7,7 @@ import com.example.common.dispatcher.DispatcherProvider
 import com.example.common.scope.SocialUrl
 import com.example.profile_dagger.di.PresentationComponent
 import com.example.profile_dagger.di.ProfileDaggerViewModelModule
+import com.example.profile_dagger.di.ScreenBindingModule
 import com.example.profile_dagger.di.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -20,9 +21,10 @@ import retrofit2.Retrofit
         NetworkModule::class,
         CoroutineDispatcherModule::class,
         ViewModelModule::class,
-        ProfileDaggerViewModelModule::class,
         AndroidInjectionModule::class,
         ActivityBindingModule::class,
+        ScreenBindingModule::class,
+        ProfileDaggerViewModelModule::class,
     ],
     dependencies = [PresentationComponent::class]
 )
