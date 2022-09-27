@@ -1,5 +1,6 @@
 package com.example.data.profile.di
 
+import com.example.common.scope.AuthUrl
 import com.example.database.AppDatabase
 import com.example.database.owner.dao.OwnerDao
 import com.example.network.profile.data_souce.ProfileRemoteDataSource
@@ -17,7 +18,7 @@ class ProfileModule {
     fun provideOwnerDao(db: AppDatabase): OwnerDao = db.ownerDao()
 
     @Provides
-    fun provideProfileService(retrofit: Retrofit): ProfileService =
+    fun provideProfileService(@AuthUrl retrofit: Retrofit): ProfileService =
         retrofit.create(ProfileService::class.java)
 
     @Provides

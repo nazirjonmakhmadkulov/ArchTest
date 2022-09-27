@@ -1,6 +1,8 @@
 package com.example.archtest.di.modules
 
 import android.content.Context
+import com.example.common.scope.AuthUrl
+import com.example.common.scope.SocialUrl
 import com.example.common.Constant
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -57,11 +59,23 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitAuth(okHttpClient: OkHttpClient): Retrofit {
+    @SocialUrl
+    fun provideRetrofitSocial(okHttpClient: OkHttpClient): Retrofit {
         val moshi = Moshi.Builder()
             .addLast(KotlinJsonAdapterFactory())
             .build()
         return Retrofit.Builder().baseUrl(Constant.SOCIAL_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi)).client(okHttpClient).build()
+    }
+
+    @Provides
+    @Singleton
+    @AuthUrl
+    fun provideRetrofitProfile(okHttpClient: OkHttpClient): Retrofit {
+        val moshi = Moshi.Builder()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
+        return Retrofit.Builder().baseUrl(Constant.PROFILE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi)).client(okHttpClient).build()
     }
 }

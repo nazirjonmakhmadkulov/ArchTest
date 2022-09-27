@@ -1,10 +1,10 @@
-package com.example.archtest.di.scope
+package com.example.common.scope
 
 import javax.inject.Qualifier
 import javax.inject.Scope
 
 @Scope
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class FeatureScope
 
 @Qualifier

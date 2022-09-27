@@ -1,9 +1,7 @@
-package com.example.archtest.di.modules
+package com.example.database
 
 import android.content.Context
 import androidx.room.Room
-import com.example.common.Constant
-import com.example.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,10 +12,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
+    val DATABASE_NAME = "qwangy"
+
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, Constant.DATABASE_NAME)
+        Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .build()
 }
